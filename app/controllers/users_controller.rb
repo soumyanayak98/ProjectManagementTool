@@ -11,10 +11,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:email] = @user.email
       logger.info session.inspect
-      flash[:notice] = "Welcome #{@user.username}, You have Successfully signed Up!"
-      redirect_to user_projects_path
+      flash[:success] = "Welcome #{@user.username}, You have Successfully signed Up!"
+      redirect_to projects_path
     else
-      render "new"
+      render 'new'
     end
   end
 

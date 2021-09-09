@@ -19,7 +19,10 @@ class ProjectsController < ApplicationController
   def create
     @project = curr_user.projects.build(project_params)
     if @project.save
-      flash[:notice] = "Project created successfully!"
+      flash[:success] = "Project created successfully!"
+      redirect_to projects_path
+    else
+      flash[:error] = "Project must contain a name"
       redirect_to projects_path
     end
   end

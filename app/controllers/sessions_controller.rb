@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:email] = user.email
       logger.info session.inspect
-      flash[:notice] = "Logged in successfully!"
+      flash[:success] = "Logged in successfully!"
       redirect_to projects_path
     else
       flash.now[:alert] = "Invalid Credentials"
