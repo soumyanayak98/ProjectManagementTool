@@ -1,6 +1,7 @@
 class User < ApplicationRecord
+  before_save :downcase_fields
   has_secure_password
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   validates :username, presence: true, length: {minimum: 3, maximum: 25}
   
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum:150}, 
                     uniqueness: { case_sensitive: false }, 
                     format: {with: VALID_EMAIL_REGEX}
-  before_save :downcase_fields
+  validates_confirmation_of :password
 
   def downcase_fields
     self.email.downcase!
