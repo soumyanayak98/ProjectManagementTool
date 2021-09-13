@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
     
   resources :users, only: [:create]
-  resources :projects
+  resources :projects, except: [:edit, :update, :destroy] do
+    resources :features, only: [:create]
+  end
 
   get '/signup', to: 'users#new'
   get '/login', to: "sessions#new"

@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
       flash[:alert] = "You are not allowed to view this project"
       redirect_to projects_path
     end
+    @features = @project.features
   end
 
   def new

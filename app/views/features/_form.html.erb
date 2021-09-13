@@ -1,0 +1,10 @@
+<%= form_for([@project, @project.features.build]) do |f| %>
+  <%= f.hidden_field :category_id, value: 1 %>
+	<%= f.label :title %><br>
+	<%= f.text_field :title , required: true  %><br>
+	<br>
+	<%= f.label :description %><br>
+	<%= f.text_area :description , required: true  %><br>
+	<br>
+	<%= f.submit "create" %>
+<% end %>

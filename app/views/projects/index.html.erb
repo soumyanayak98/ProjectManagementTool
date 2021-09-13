@@ -6,11 +6,11 @@
   </div>
   <hr class="mb-1">
   <% if curr_user && @projects.length > 0 %>
-    <div class="row p-2 bg-dark text-white">
+    <div class="row px-2 pt-1 bg-dark text-white">
       <div class="col-9 p-2">
         <h5> -- Your projects --</h5>
       </div>
-      <div class="col-3 p-2">
+      <div class="col-3 p-2 text-center">
         <h5>Create New
           <%= link_to new_project_path, remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'  do %>
             <i class="fas fa-plus-circle fa-lg"></i>
