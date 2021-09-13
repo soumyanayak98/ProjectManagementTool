@@ -13,4 +13,5 @@ Turbolinks.start();
 ActiveStorage.start();
 
 import "jquery";
+import "popper.js";
 import "bootstrap";

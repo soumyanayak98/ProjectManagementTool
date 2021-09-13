@@ -5,10 +5,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = curr_user.projects
   end
-  def new
-    @project = Project.new
-  end
-
+  
   def show
     @project = Project.find(params[:id])
     if @project.user != curr_user
@@ -16,6 +13,14 @@ class ProjectsController < ApplicationController
       redirect_to projects_path
     end
   end
+
+  def new
+    @project = Project.new
+    respond_to do |format|
+      format.js {render partial: 'projects/new'}
+    end
+  end
+
   def create
     @project = curr_user.projects.build(project_params)
     if @project.save
