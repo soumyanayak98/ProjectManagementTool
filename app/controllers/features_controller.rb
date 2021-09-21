@@ -1,7 +1,6 @@
 class FeaturesController < ApplicationController
 
   def create
-    byebug
     @project = Project.find(params[:project_id])
     @feature = @project.features.build(feature_params)
     if @feature.save
