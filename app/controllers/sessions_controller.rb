@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_action :logged_in_redirect, except: [:destroy]
+  before_action :logged_in_redirect, only: [:new, :create]
 
   def new
   end
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      session[:email] = user.email
+      session[:user_id] = user.id
       logger.info session.inspect
       flash[:success] = "Logged in successfully!"
       redirect_to projects_path
@@ -19,12 +19,22 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:email] = nil
+    session[:user_id] = nil
     flash[:success] = "You have been successfully logged out!"
     redirect_to root_path
   end
 
   def omniauth
-    byebug
+    user= User.from_omniauth(auth)
+    user.save
+    session[:user_id] = user.id
+    logger.info session.inspect
+    flash[:success] = "Logged in successfully!"
+    redirect_to projects_path
+  end
+
+  private
+  def auth
+    request.env["omniauth.auth"]
   end
 end

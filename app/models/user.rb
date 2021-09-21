@@ -13,4 +13,14 @@ class User < ApplicationRecord
   def downcase_fields
     self.email.downcase!
   end
+
+  def self.from_omniauth(auth)
+    where(uid: auth.uid, provider: auth.provider).first_or_initialize do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.username = auth.info.name
+      user.email = auth.info.email
+      user.password = SecureRandom.hex(15)
+    end
+  end
 end
