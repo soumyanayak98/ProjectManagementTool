@@ -1,5 +1,5 @@
-<div id="f-list">
-  <% @features.each do |feature| %>
+<div id="f-list-<%=obj[:fid]%>">
+  <% obj[:arr].each do |feature| %>
     <%= render 'features/result', feature: feature  %>
   <% end  %>
 </div>

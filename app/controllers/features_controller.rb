@@ -4,8 +4,8 @@ class FeaturesController < ApplicationController
     @project = Project.find(params[:project_id])
     @feature = @project.features.build(feature_params)
     if @feature.save
-      flash.now[:success]="feature created successfully"
       respond_to do |format|
+        flash.now[:success]="feature created successfully"
         format.js {render partial: 'features/result'}
       end
     end

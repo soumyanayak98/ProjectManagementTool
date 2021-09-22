@@ -1,2 +1,3 @@
-$("#new_feature")[0].reset();
+$("#new_feature-1")[0].reset();
+$("#msgs").html('<%= j render("shared/msgs.html") %>');
 $("#f-list").append('<%= j render("features/result.html", feature: @feature) %>');

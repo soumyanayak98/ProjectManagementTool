@@ -1,5 +1,5 @@
-<%= form_for([@project, @project.features.build], html: {class: "shadow p-3 bg-dark rounded"}, remote: true ) do |f| %>
-  <%= f.hidden_field :category_id, value: 2 %>
+<%= form_for([@project, @project.features.build], html: {class: "shadow p-3 bg-dark rounded", id: "new_feature-#{obj}"}, remote: true ) do |f| %>
+  <%= f.hidden_field :category_id, value: obj %>
 	<%= f.text_field :title, placeholder: "Enter Feature Title", class: "form-control"  %><br>
 	<%= f.text_area :description, placeholder: "Enter Feature Description", class: "form-control" %>
   <div class="form-group text-center my-1">

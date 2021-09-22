@@ -10,21 +10,57 @@
 </div>
 
 <div class="container">
-  <%= render 'shared/msgs' %>
-  <div class="row px-2 mt-1 flex-column">
-    <div>
-      <a class="btn btn-dark" data-toggle="collapse" href="#myCollapse" role="button" aria-expanded="false" aria-controls="myCollapse">+ Add Feature</a>
-    </div>
-    <div>
-      <div class="collapse multi-collapse mt-1" id="myCollapse">
-        <div class="card card-body p-0">
-          <%= render 'features/form' %>
+  <div id="msgs">
+    <%= render 'shared/msgs' %>
+  </div>
+  <div class="row px-2 mt-1 flex-row">
+    <div class="col-4">
+      <div>
+        <a class="btn btn-dark" data-toggle="collapse" href="#myCollapse1" role="button" aria-expanded="false" aria-controls="myCollapse1">+ Add Feature</a>
+      </div>
+      <div>
+        <div class="collapse multi-collapse mt-1" id="myCollapse1">
+          <div class="card card-body p-0">
+            <%= render 'features/form', obj: 1 %>
+          </div>
         </div>
+      </div>
+      <div class="features-list mt-2">
+        <%= render 'features/lists', obj:{ arr: @cat1, fid: '1'} %>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div>
+        <a class="btn btn-dark" data-toggle="collapse" href="#myCollapse2" role="button" aria-expanded="false" aria-controls="myCollapse2">+ Add Feature</a>
+      </div>
+      <div>
+        <div class="collapse multi-collapse mt-1" id="myCollapse2">
+          <div class="card card-body p-0">
+            <%= render 'features/form', obj: 2 %>
+          </div>
+        </div>
+      </div>
+      <div class="features-list mt-2">
+        <%= render 'features/lists', obj: { arr: @cat2, fid: '2'} %>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div>
+        <a class="btn btn-dark" data-toggle="collapse" href="#myCollapse3" role="button" aria-expanded="false" aria-controls="myCollapse3">+ Add Feature</a>
+      </div>
+      <div>
+        <div class="collapse multi-collapse mt-1" id="myCollapse3">
+          <div class="card card-body p-0">
+            <%= render 'features/form', obj: 3 %>
+          </div>
+        </div>
+      </div>
+      <div class="features-list mt-2">
+        <%= render 'features/lists', obj: { arr: @cat3, fid: '3'} %>
       </div>
     </div>
   </div>
 
-  <div class="features-list mt-2">
-    <%= render 'features/lists' %>
-  </div>
 </div>
