@@ -1,3 +1,17 @@
-$("#new_feature-1")[0].reset();
-$("#msgs").html('<%= j render("shared/msgs.html") %>');
-$("#f-list").append('<%= j render("features/result.html", feature: @feature) %>');
+<%case @feature.category_id
+  when 1 %>
+    $("#new_feature-1")[0].reset();
+    $('.collapse').removeClass('show');
+    $("#msgs").html('<%= j render("shared/msgs.html") %>');
+    $("#f-list-1").append('<%= j render("features/result.html", feature: @feature) %>');
+  <%when 2 %>
+    $("#new_feature-2")[0].reset();
+    $('.collapse').removeClass('show');
+    $("#msgs").html('<%= j render("shared/msgs.html") %>');
+    $("#f-list-2").append('<%= j render("features/result.html", feature: @feature) %>');
+  <%when 3 %>
+    $("#new_feature-3")[0].reset();
+    $('.collapse').removeClass('show');
+    $("#msgs").html('<%= j render("shared/msgs.html") %>');
+    $("#f-list-3").append('<%= j render("features/result.html", feature: @feature) %>');
+<% end %>
