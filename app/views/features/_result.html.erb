@@ -1,4 +1,10 @@
-<div id="fRow_<%= feature.id %>">
-  <%= feature.title %>
-  <%= feature.description %>
+<div id="fRow_<%= feature.id %>" class="mb-1">
+  <div>
+    <a class="btn btn-outline-dark btn-sm d-flex" data-toggle="collapse" href="#myfc<%=feature.id%>" role="button" aria-expanded="false" aria-controls="#myfc<%=feature.id%>"><%= feature.title %></a>
+  </div>
+  <div class="collapse multi-collapse" id="myfc<%=feature.id%>">
+    <div class="card card-body p-2">
+      <%= feature.description %>
+    </div>
+  </div>
 </div>
