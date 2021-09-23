@@ -1,5 +1,6 @@
 class Feature < ApplicationRecord
   belongs_to :project
+  has_many :tasks, dependent: :destroy
   before_save :create_ticket_id
 
   validates :title, presence: true

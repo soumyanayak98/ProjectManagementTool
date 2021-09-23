@@ -5,6 +5,28 @@
   <div class="collapse multi-collapse" id="myfc<%=feature.id%>">
     <div class="card card-body p-2">
       <%= feature.description %>
+      <%= form_for([feature.project, feature, feature.tasks.build]) do |f| %>
+        <div class="form-group row">
+          <div class="col-9 pr-0">
+            <%= f.text_field :description, placeholder: "create a task", class: "form-control" %>
+          </div>
+          <div class="col-3">
+            <%= f.submit "Create", class: "btn btn-outline-dark btn-sm"%>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex flex-row justify-content-between">
+        <p class="my-0">Tasks</p>
+        <p class="my-0">
+          (<%= feature.tasks.count {|t| t.done == true} %>/<%= feature.tasks.count%>) 
+        </p>
+      </div>
+      <hr class="my-0"/>
+      <div>
+        <% feature.tasks.each do |task| %>
+          <%= task.description %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
