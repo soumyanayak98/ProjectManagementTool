@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :projects, except: [:edit, :update, :destroy] do
     resources :features, only: [:create] do
-      resources :tasks, only: [:create]
+      resources :tasks, only: [:show, :create, :update]
     end
   end
+  
 end

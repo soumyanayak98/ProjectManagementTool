@@ -15,3 +15,11 @@ ActiveStorage.start();
 import "jquery";
 import "popper.js";
 import "bootstrap";
+
+$(document).on("turbolinks:load", function () {
+	let tasks = Array.from($(".tasks"));
+	tasks.forEach(function (task) {
+		let lastChild = task.lastElementChild;
+		lastChild.style.display = "none";
+	});
+});

@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+  def show
+    
+  end
   def create
     @project = Project.find(params[:project_id])
     feature = Feature.find(params[:feature_id])

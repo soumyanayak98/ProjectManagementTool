@@ -2,7 +2,7 @@
   <div>
     <a class="btn btn-outline-dark btn-sm d-flex" data-toggle="collapse" href="#myfc<%=feature.id%>" role="button" aria-expanded="false" aria-controls="#myfc<%=feature.id%>"><%= feature.title %></a>
   </div>
-  <div class="collapse multi-collapse" id="myfc<%=feature.id%>">
+  <div class="collapse" id="myfc<%=feature.id%>">
     <div class="card card-body p-2">
       <%= feature.description %>
       <%= form_for([feature.project, feature, feature.tasks.build]) do |f| %>
@@ -22,10 +22,8 @@
         </p>
       </div>
       <hr class="my-0"/>
-      <div>
-        <% feature.tasks.each do |task| %>
-          <%= task.description %>
-        <% end %>
+      <div class="tasks">
+        <%= render feature.tasks %>
       </div>
     </div>
   </div>
