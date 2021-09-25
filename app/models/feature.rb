@@ -1,4 +1,5 @@
 class Feature < ApplicationRecord
+  mount_uploader :attachment, AttachmentUploader
   belongs_to :project
   has_many :tasks, dependent: :destroy
   before_save :create_ticket_id

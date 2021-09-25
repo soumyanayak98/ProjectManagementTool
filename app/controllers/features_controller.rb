@@ -12,6 +12,6 @@ class FeaturesController < ApplicationController
   end
 
   def feature_params
-    params.require(:feature).permit(:title, :description, :category_id)
+    params.require(:feature).permit(:title, :description, :category_id, :attachment)
   end
 end

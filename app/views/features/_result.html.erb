@@ -5,6 +5,7 @@
   <div class="collapse" id="myfc<%=feature.id%>">
     <div class="card card-body p-2">
       <%= feature.description %>
+      <%= link_to "view attachment", feature.attachment_url, target: "_blank" %>
       <%= form_for([feature.project, feature, feature.tasks.build]) do |f| %>
         <div class="form-group row">
           <div class="col-9 pr-0">
