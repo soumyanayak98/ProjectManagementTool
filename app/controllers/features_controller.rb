@@ -8,6 +8,11 @@ class FeaturesController < ApplicationController
         flash.now[:success]="feature created successfully"
         format.js {render partial: 'features/result'}
       end
+    else
+      respond_to do |format|
+        flash.now[:error] = "Feature must contain a title and description"
+        format.js {render partial: 'features/error'}
+      end
     end
   end
 
