@@ -5,6 +5,9 @@
 	box-shadow: none !important;
 }
 
+.project-name {
+	font-size: 25px;
+}
 .scrollbar {
 	height: 80vh;
 	overflow-y: auto;
@@ -32,6 +35,70 @@
 }
 
 .section {
-	border: 1px solid black;
+	margin-right: 0.5rem;
+	flex: 1;
+	border: 1px solid #343a40;
 	padding: 0.5em;
+}
+button {
+	border: none;
+	background-color: transparent;
+	outline: none;
+	box-shadow: none !important;
+}
+
+#menu-icon {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 30px;
+	cursor: pointer;
+	color: #fff;
+}
+#close-icon {
+	cursor: pointer;
+}
+
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding: 8px 8px 8px 24px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
 }
