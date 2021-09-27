@@ -1,5 +1,18 @@
 @import "bootstrap/dist/css/bootstrap";
 
+.jumbotron {
+	height: 70vh;
+	background-image: asset-url("jumbo.jpg");
+	background-color: rgb(107, 107, 107);
+	background-blend-mode: multiply;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+}
+.jumbo-hr {
+	border-color: #fff;
+}
 .btn {
 	outline: none;
 	box-shadow: none !important;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_054529) do
+ActiveRecord::Schema.define(version: 2021_09_27_043514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 2021_09_24_054529) do
     t.index ["feature_id"], name: "index_tasks_on_feature_id"
   end
 
+  create_table "user_tasks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "task_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_user_tasks_on_task_id"
+    t.index ["user_id"], name: "index_user_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -71,4 +80,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_054529) do
   add_foreign_key "features", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "features"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end

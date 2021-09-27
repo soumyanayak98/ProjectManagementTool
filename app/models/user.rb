@@ -2,6 +2,8 @@ class User < ApplicationRecord
   before_save :downcase_fields
   has_secure_password
   has_many :projects, dependent: :destroy
+  has_many :user_tasks
+  has_many :tasks, through: :user_tasks
 
   validates :username, presence: true, length: {minimum: 3, maximum: 25}
   
