@@ -1,12 +1,9 @@
 <%= render 'shared/navigation' %>
 <div class="container">
   <%= render 'shared/msgs' %>
-  <div class="row justify-content-center mt-2 mb-0" >
-    <h4 class="m-0">Welcome to Project Management Tool</h4>
-  </div>
-  <hr class="mb-1">
+  
   <% if curr_user && @projects.length > 0 %>
-    <div class="row px-2 pt-1 bg-dark text-white">
+    <div class="row px-2 pt-1 bg-dark text-white mt-2">
       <div class="col-9 p-2">
         <h5> -- Your projects --</h5>
       </div>
@@ -27,6 +24,10 @@
       </div>
     <% end %>
   <% else %>
+    <div class="row justify-content-center mt-2 mb-0" >
+      <h4 class="m-0">Welcome to Project Management Tool</h4>
+    </div>
+    <hr class="mb-1">
     <p>Seems like you don't have a project yet</p>
     <h5>Create your very first project Below to get started!</h5>
     <%= form_with(scope: :project, class: "shadow p-4 bg-dark rounded", local: true) do |f| %>

@@ -1,0 +1,30 @@
+<%= render 'shared/navigation' %>
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <% if @tasks.length > 0 %>
+      <% @tasks.each do |task| %>
+        <div class="col-6 mt-2">
+          <div class="card text-center">
+            <div class="card-header">
+              by <%= task.feature.project.user.username %>
+            </div>
+            <div class="card-body py-1">
+              <h5 class="card-title"><%= task.feature.title %></h5>
+              <p class="card-text"><%= task.description %></p>
+              <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank", class: "btn btn-primary py-1" %>
+            </div>
+            <div class="card-footer text-muted py-1">
+              assigned: <%= time_ago_in_words(task.created_at) %> ago
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-8">
+        <div class="card text-center">
+          <h3>You have no tasks</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

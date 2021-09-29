@@ -14,9 +14,12 @@
       <div>
         <span class="d-inline">Feature Description: </span><span><%= @task.feature.description %></span>
       </div>
-      <%= link_to "View attachment", @task.feature.attachment_url %>
-
+      <%= link_to "View attachment", @task.feature.attachment_url, target: "_blank" %>
       <h5>Task: <%= @task.description %></h5>
     </div>
+  </div>
+  <div class="row">
+    <%= form_for([@task.feature.project, @task.feature, @task], method: "POST") do |f| %>
+    <% end %>
   </div>
 </div>

@@ -15,6 +15,6 @@ Rails.application.routes.draw do
       resources :tasks, only: [:show, :create, :update]
     end
   end
-  resources :user_tasks, only: [:show, :create]
+  resources :user_tasks, only: [:index]
   
 end
