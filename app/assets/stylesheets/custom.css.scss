@@ -115,3 +115,8 @@ button {
 		font-size: 18px;
 	}
 }
+
+.comments {
+	max-height: 190px;
+	overflow-y: auto;
+}

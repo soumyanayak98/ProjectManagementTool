@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :projects, except: [:edit, :update, :destroy] do
     resources :features, only: [:create] do
-      resources :tasks, only: [:show, :create, :update]
+      resources :tasks, only: [:show, :create, :update] do
+        resources :comments, only: [:create]
+      end
     end
   end
   resources :user_tasks, only: [:index]

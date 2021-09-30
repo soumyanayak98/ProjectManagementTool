@@ -16,21 +16,42 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <div>
-        <span class="d-inline">Feature Description: </span><span><%= @task.feature.description %></span>
+        <strong class="d-inline">Feature Description: </strong><span><%= @task.feature.description %></span>
       </div>
       <%= link_to "View attachment", @task.feature.attachment_url, target: "_blank" %>
       <h5>Task: <%= @task.description %></h5>
       <div>
-        Assigned to: <%= assigned_users(@task.users) %>
+        <strong>Assigned to: </strong>  
+        <em>
+          <%= assigned_users(@task.users) %>
+        </em>
       </div>
       <div>
-        Status: <%= task_status(@task) %>
+        <strong>Status: </strong> 
+        <em>
+          <%= task_status(@task) %>
+        </em>
       </div>
     </div>
   </div>
-  <div class="row justify-content-center my-3">
+  <div class="row justify-content-center my-1">
     <div class="col-6">
-      <%= render "form" %>
+      <% if !@task.delivered || @task.feature.project.user == curr_user %>
+        <%= render "form" %>
+      <% end %>
     </div>
   </div>
+  <hr class="my-1"/>
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <h6><%= pluralize(@task.comments.size, "Comment") %></h6>
+      <div class="comments">
+        <%= render @task.comments %>
+      </div>
+    </div>
+    <div class="col-5">
+      <h5>Add a comment:</h5>
+      <%= render "comments/form" %>
+    </div>
+	</div>
 </div>

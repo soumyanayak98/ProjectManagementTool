@@ -1,0 +1,18 @@
+class CommentsController < ApplicationController
+  def create
+    @project = Project.find(params[:project_id])
+    @feature = Feature.find(params[:feature_id])
+    @task = Task.find(params[:task_id])
+    @comment = @task.comments.build(comment_params)
+    if @comment.save
+      flash[:success]="Comment added successfully"
+      redirect_to [@project, @feature, @task]
+    else
+      redirect_to [@project, @feature, @task]
+    end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body, :name)
+  end
+end
