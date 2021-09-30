@@ -8,6 +8,10 @@
   </div>
 </div>
 
+<div class="container mt-2">
+  <%= render 'shared/msgs' %>
+</div>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-10">
@@ -16,10 +20,17 @@
       </div>
       <%= link_to "View attachment", @task.feature.attachment_url, target: "_blank" %>
       <h5>Task: <%= @task.description %></h5>
+      <div>
+        Assigned to: <%= assigned_users(@task.users) %>
+      </div>
+      <div>
+        Status: <%= task_status(@task) %>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <%= form_for([@task.feature.project, @task.feature, @task], method: "POST") do |f| %>
-    <% end %>
+  <div class="row justify-content-center my-3">
+    <div class="col-6">
+      <%= render "form" %>
+    </div>
   </div>
 </div>

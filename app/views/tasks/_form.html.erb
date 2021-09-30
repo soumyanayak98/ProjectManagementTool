@@ -1,0 +1,29 @@
+<%= form_for([@task.feature.project, @task.feature, @task], method: "PATCH", html:{class: "p-2 bg-light rounded"}) do |f| %>
+  <% if curr_user == @task.feature.project.user %>
+    <div class="form-group row">
+        <%= f.label "Assign User" , class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= f.collection_select(:user_ids, User.all, :id , :username, {prompt: 'make your selection from the list below(optional)'}, { multiple: true, class: 'custom-select '}  ) %>
+        </div>
+    </div>
+  <% end %>
+  <div class="form-group row align-items-center">
+    <div class="col-4 text-center">
+    <% if @task.started %>
+      <% if @task.done %>
+        <%= f.check_box :delivered %>
+        <%= f.label :Deliver %>
+      <% else %>
+        <%= f.check_box :done %>
+        <%= f.label :finish %>
+      <% end %>  
+    <% else %>
+      <%= f.check_box :started %>
+      <%= f.label :Start %>
+    <% end %>
+    </div>
+  </div>
+  <div class="form-group row justify-content-center mb-0">
+    <%= f.submit "save", class: "btn btn-outline-dark btn-sm"%>  
+  </div>
+<% end %>
