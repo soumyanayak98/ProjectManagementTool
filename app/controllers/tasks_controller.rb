@@ -14,7 +14,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    byebug
     @task = Task.find(params[:id])
     if @task.update(params.require(:task).permit(:done, :started, :delivered, user_ids:[]))
       flash[:success] = "Task Updated Successfully!"
