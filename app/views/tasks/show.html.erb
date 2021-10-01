@@ -23,7 +23,11 @@
       <div>
         <strong>Assigned to: </strong>  
         <em>
-          <%= assigned_users(@task.users) %>
+          <% if @task.users.size > 0 %>
+            <%= assigned_users(@task.users) %>
+          <% else %>
+            No one
+          <% end %>
         </em>
       </div>
       <div>
@@ -36,7 +40,7 @@
   </div>
   <div class="row justify-content-center my-1">
     <div class="col-6">
-      <% if !@task.delivered || @task.feature.project.user == curr_user %>
+      <% if !@task.delivered %>
         <%= render "form" %>
       <% end %>
     </div>
