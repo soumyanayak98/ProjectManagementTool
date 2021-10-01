@@ -13,6 +13,14 @@ class ProjectsController < ApplicationController
       redirect_to projects_path
     end
     @features = @project.features
+    if params[:search]
+      @features = @project.features.search(params[:search])
+      if @features.length == 0
+        flash[:alert] = "no feature found"
+      end
+    else
+      @features = @project.features.all
+    end
     @cat1 = @features.select { |feature| feature.category_id == 1  }
     @cat2 = @features.select { |feature| feature.category_id == 2  }
     @cat3 = @features.select { |feature| feature.category_id == 3  }
