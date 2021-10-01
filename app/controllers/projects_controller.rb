@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
     if params[:search]
       @features = @project.features.search(params[:search])
       if @features.length == 0
-        flash[:alert] = "no feature found"
+        flash.now[:alert] = "no feature found"
       end
     else
       @features = @project.features.all
