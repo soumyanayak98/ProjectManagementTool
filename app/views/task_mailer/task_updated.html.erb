@@ -1,0 +1,24 @@
+<h1>Task updated</h1>
+
+<p>
+ Task:  <%= @task.description %>
+</p>
+<p>
+ Assigned To:  
+  <% @task.users.each  do |user| %>
+    <%= user.username %>
+  <%end %>
+</p>
+<p>
+  Status:
+  <% if @task.delivered %>
+    "Delivered"
+  <% else %>
+    <% if @task.done %>
+      "Finished"
+    <% else %>
+      <%= @task.started ? "Started" : "Not Started" %>
+    <% end %>
+  <% end %>
+</p>
+

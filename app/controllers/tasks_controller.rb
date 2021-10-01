@@ -10,12 +10,21 @@ class TasksController < ApplicationController
     if @task.save
       flash[:success] = "Task created successfully!"
       redirect_to @project
+    else
+      flash[:error] = "Task Description field is required"
+      redirect_to @project
     end
   end
 
   def update
     @task = Task.find(params[:id])
     if @task.update(params.require(:task).permit(:done, :started, :delivered, user_ids:[]))
+      emails = @task.users.map(&:email)
+      owner_email = @task.feature.project.user.email
+      @task.users.each do |user|
+        TaskMailer.task_updated(@task, user.email).deliver_now
+      end
+      TaskMailer.task_updated(@task, owner_email).deliver_now if !emails.include?(owner_email)
       flash[:success] = "Task Updated Successfully!"
       redirect_to [@task.feature.project, @task.feature, @task]
     else

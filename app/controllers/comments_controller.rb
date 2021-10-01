@@ -6,6 +6,12 @@ class CommentsController < ApplicationController
     @comment = @task.comments.build(comment_params)
     if @comment.save
       flash[:success]="Comment added successfully"
+      emails = @comment.task.users.map(&:email)
+      owner_email = @comment.task.feature.project.user.email
+      @comment.task.users.each do |user|
+        CommentMailer.new_comment(@comment, user.email).deliver_now
+      end
+      CommentMailer.new_comment(@comment, owner_email).deliver_now if !emails.include?(owner_email)
       redirect_to [@project, @feature, @task]
     else
       redirect_to [@project, @feature, @task]
