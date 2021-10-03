@@ -8,13 +8,13 @@ class Feature < ApplicationRecord
   validates :description, presence: true
   
   def create_ticket_id
-    self.ticket_id = "FI-"+SecureRandom.alphanumeric(20)
+    self.ticket_id = "FI-"+SecureRandom.hex(5)
   end
 
   def self.search(search)
     if search
-      if search[0..2] == "FI-"
-        Feature.where("ticket_id LIKE ?", "#{search}%")
+      if search[0..2] == "FI-" || search[0..2] == "fi-"
+        Feature.where("ticket_id ILIKE ?", "#{search}%")
       else
         Feature.where("title ILIKE ?", "#{search}%")
       end
