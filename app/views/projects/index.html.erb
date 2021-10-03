@@ -15,6 +15,12 @@
         </h5>
       </div>
     </div>
+    <div class="flickr_pagination">
+      <div class="page_info mb-2">
+        <%= page_entries_info @projects %>
+      </div>
+      <%= will_paginate @projects, container: false %>
+    </div>
     
     <% @projects.each do |project| %>
       <div class="row my-1">

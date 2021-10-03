@@ -1,7 +1,13 @@
 <%= render 'shared/navigation' %>
 <div class="container">
-  <div class="row justify-content-center mt-3">
-    <% if @tasks.length > 0 %>
+  <% if @tasks.length > 0 %>
+    <div class="flickr_pagination">
+      <div class="page_info mb-2">
+        <%= page_entries_info @tasks %>
+      </div>
+      <%= will_paginate @tasks, container: false %>
+    </div>
+    <div class="row justify-content-center mt-3">
       <% @tasks.each do |task| %>
         <div class="col-6 mt-2">
           <div class="card text-center">
@@ -19,12 +25,14 @@
           </div>
         </div>
       <% end %>
-    <% else %>
+    </div>
+  <% else %>
+    <div class="row justify-content-center mt-3">
       <div class="col-8">
         <div class="card text-center">
           <h3>You have no tasks</h3>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

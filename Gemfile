@@ -28,6 +28,7 @@ gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'carrierwave', '~> 2.0'
+gem 'will_paginate', '~> 3.3.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

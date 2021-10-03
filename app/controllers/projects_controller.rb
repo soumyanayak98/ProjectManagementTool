@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :require_user
 
   def index
-    @projects = curr_user.projects
+    @projects = curr_user.projects.paginate(page: params[:page], per_page: 10)
   end
   
   def show
