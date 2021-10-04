@@ -1,4 +1,7 @@
-<div>
-  <%= task.description %>
-  <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank" %>
+<div class="card">
+  <div>
+    <%= task.description %>
+    <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank" %>
+  </div>
+  <div>Status: <%= task_status(task) %></div>
 </div>

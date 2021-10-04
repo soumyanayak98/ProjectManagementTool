@@ -21,10 +21,11 @@ class TasksController < ApplicationController
     if @task.update(params.require(:task).permit(:done, :started, :delivered, user_ids:[]))
       emails = @task.users.map(&:email)
       owner_email = @task.feature.project.user.email
+      sub = @task.saved_changes.empty? ? "A new user has been assigned to the task" : "Status of the task has Updated"
       @task.users.each do |user|
-        TaskMailer.task_updated(@task, user.email).deliver_now
+        TaskMailer.task_updated(@task, user.email, sub).deliver_now
       end
-      TaskMailer.task_updated(@task, owner_email).deliver_now if !emails.include?(owner_email)
+      TaskMailer.task_updated(@task, owner_email, sub).deliver_now if !emails.include?(owner_email)
       flash[:success] = "Task Updated Successfully!"
       redirect_to [@task.feature.project, @task.feature, @task]
     else
