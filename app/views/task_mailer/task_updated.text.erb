@@ -1,6 +1,4 @@
-Task_updated
-
- Task: <%= @task.description %>
+Task: "<%= @task.description %>"
 
  Assigned To:
   <% @task.users.each  do |user| %>
@@ -14,6 +12,6 @@ Status:
     <% if @task.done %>
       "Finished"
     <% else %>
-      <%= @task.started ? "Started" : "Not Started" %>
+      <%= @task.started ? '"Started"' : '"Not Started"' %>
     <% end %>
   <% end %>

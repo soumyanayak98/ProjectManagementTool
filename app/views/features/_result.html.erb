@@ -1,6 +1,6 @@
 <div id="fRow_<%= feature.id %>" class="mb-1">
   <div>
-    <a class="btn btn-outline-dark d-flex flex-row justify-content-between" data-toggle="collapse" href="#myfc<%=feature.id%>" role="button" aria-expanded="false" aria-controls="#myfc<%=feature.id%>">
+    <a class="btn btn-outline-dark btn-sm d-flex flex-row justify-content-between" data-toggle="collapse" href="#myfc<%=feature.id%>" role="button" aria-expanded="false" aria-controls="#myfc<%=feature.id%>">
       <span>
         <%= feature.title %>
       </span>
@@ -11,7 +11,9 @@
   </div>
   <div class="collapse" id="myfc<%=feature.id%>">
     <div class="card card-body p-2">
-      <%= feature.description %>
+      <span class="lead">
+        <%= feature.description %>
+      </span>
       <%= link_to "view attachment", feature.attachment_url, target: "_blank" %>
       <%= form_for([feature.project, feature, feature.tasks.build]) do |f| %>
         <div class="form-group row">
@@ -26,10 +28,10 @@
       <div class="d-flex flex-row justify-content-between">
         <p class="my-0">Tasks</p>
         <p class="my-0">
-          (<%= feature.tasks.count {|t| t.done == true} %>/<%= feature.tasks.count%>) 
+          (<%= feature.tasks.count {|t| t.done == true} %>/<%= feature.tasks.count %>) 
         </p>
       </div>
-      <hr class="my-0"/>
+      <hr class="mt-0 mb-1"/>
       <div class="tasks">
         <%= render feature.tasks %>
       </div>

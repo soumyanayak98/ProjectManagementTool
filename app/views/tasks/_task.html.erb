@@ -1,7 +1,9 @@
-<div class="card">
-  <div>
-    <%= task.description %>
-    <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank" %>
+<div class="card card-body p-1 mb-1">
+  <div class="d-flex flex-row justify-content-between">
+    <strong>
+      <%= truncate(task.description, length: 34) %>
+    </strong>
+    <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank", class: "btn btn-primary btn-sm p-1" %>
   </div>
-  <div>Status: <%= task_status(task) %></div>
+  <div>Status: <em><%= task_status(task) %></em></div>
 </div>

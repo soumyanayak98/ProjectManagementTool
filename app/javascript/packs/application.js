@@ -32,6 +32,7 @@ $(document).on("turbolinks:load", function () {
 	$("#iceBtn").on("click", function () {
 		$("#icebox").hide();
 	});
+
 	$("#menu-icon").on("click", openNav);
 	$("#close-icon").on("click", closeNav);
 
@@ -44,6 +45,9 @@ $(document).on("turbolinks:load", function () {
 	$("#iceOpen").on("click", function () {
 		$("#icebox").show();
 	});
+
+	$(".previous_page").html("<< Prev");
+	$(".next_page").html("Next >>");
 });
 
 function openNav() {

@@ -1,17 +1,17 @@
-<h4>Task:  <%= @task.description %></h4>
+<h3>Task:  "<%= @task.description %>"</h3>
 <p>Assigned To:  
   <% @task.users.each  do |user| %>
-    <%= user.username %>
+    <strong><%= user.username %></strong>, 
   <%end %>
 </p>
 <p>Status:
   <% if @task.delivered %>
-    Delivered
+    <strong>Delivered</strong>
   <% else %>
     <% if @task.done %>
-      Finished
+      <strong>Finished</strong>
     <% else %>
-      <%= @task.started ? "Started" : "Not Started" %>
+      <strong><%= @task.started ? "Started" : "Not Started" %></strong>
     <% end %>
   <% end %>
 </p>
