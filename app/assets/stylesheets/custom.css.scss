@@ -168,3 +168,13 @@ button {
 .flickr_pagination .next_page {
 	margin-left: 1em;
 }
+
+#trix-toolbar-1 {
+	// display: none !important;
+	width: 100%;
+	font-size: 0.8rem;
+}
+
+.trix-button-group--history-tools {
+	display: none !important;
+}
