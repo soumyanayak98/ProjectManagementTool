@@ -236,3 +236,21 @@ figure {
 		}
 	}
 }
+
+.color- {
+	&yellow {
+		color: rgb(189, 189, 34);
+	}
+	&red {
+		color: red;
+	}
+	&green {
+		color: green;
+	}
+	&blue {
+		color: blue;
+	}
+	&cyan {
+		color: cyan;
+	}
+}

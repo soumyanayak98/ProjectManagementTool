@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include ActionText::Attachable
-  before_save :downcase_fields
+  before_save :downcase_fields, :gen_color
   has_secure_password
   has_many :projects, dependent: :destroy
   has_many :user_tasks
@@ -29,5 +29,11 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = SecureRandom.hex(15)
     end
+  end
+
+  def gen_color
+    col_array = ["red", "yellow", "green", "blue", "cyan"]
+    col = col_array[rand(col_array.length)]
+    self.color = col
   end
 end
