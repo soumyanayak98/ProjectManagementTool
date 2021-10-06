@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.color = User.gen_color
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome #{@user.username}, You have Successfully signed Up!"
