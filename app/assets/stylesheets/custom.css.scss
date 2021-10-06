@@ -169,7 +169,21 @@ button {
 	margin-left: 1em;
 }
 
-#trix-toolbar-1 {
+//trix
+// Trix attachment formatting
+.attachment--preview {
+	margin: 0.6em 0;
+	text-align: center;
+	width: 100%;
+}
+.attachment {
+	display: inline-block;
+	position: relative;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+}
+trix-toolbar {
 	// display: none !important;
 	width: 100%;
 	font-size: 0.8rem;
@@ -177,4 +191,48 @@ button {
 
 .trix-button-group--history-tools {
 	display: none !important;
+}
+
+trix-editor > div {
+	display: inline-flex !important;
+	padding: 0 !important;
+}
+trix-editor > div > span {
+	display: none !important;
+}
+
+figure {
+	margin-bottom: 0;
+}
+
+.mention {
+	font-weight: 550;
+}
+
+.tribute-container {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.05);
+
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		background: #fff;
+		padding: 0.2em 1em;
+		min-width: 15em;
+		max-width: 100%;
+	}
+
+	.highlight {
+		background: #1b6ac9;
+		color: #fff;
+
+		span {
+			font-weight: bold;
+		}
+	}
 }

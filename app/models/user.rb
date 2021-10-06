@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActionText::Attachable
   before_save :downcase_fields
   has_secure_password
   has_many :projects, dependent: :destroy
@@ -14,6 +15,10 @@ class User < ApplicationRecord
 
   def downcase_fields
     self.email.downcase!
+  end
+
+  def to_trix_content_attachment_partial_path
+    to_partial_path
   end
 
   def self.from_omniauth(auth)
