@@ -28,4 +28,9 @@ RSpec.describe Project, type: :model do
     expect(project.project_name).to eq "First project"
   end
 
+  it "project should belongs to a user" do
+    project.user = nil
+    expect(project).to_not be_valid
+  end
+
 end

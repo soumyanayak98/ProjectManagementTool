@@ -6,6 +6,7 @@ class Feature < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :category_id, presence: true
   
   def create_ticket_id
     self.ticket_id = "FI-"+SecureRandom.hex(5)
