@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
       CommentMailer.new_comment(@comment, owner_email).deliver_now if !emails.include?(owner_email)
       redirect_to [@project, @feature, @task]
     else
+      flash[:error] = "comment body cannot be blank"
       redirect_to [@project, @feature, @task]
     end
   end
