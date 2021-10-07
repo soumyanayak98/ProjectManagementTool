@@ -10,6 +10,14 @@ RSpec.describe Task, type: :model do
     expect(task).to_not be_valid
   end
 
+  it "task should have many comments" do
+    expect(task.comments).to_not be_nil
+  end
+
+  it "task should have many users" do
+    expect(task.users).to_not be_nil
+  end
+
   it "task should belongs to a feature" do
     task.description = "sample task"
     task.feature = nil

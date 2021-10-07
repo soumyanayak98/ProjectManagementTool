@@ -22,8 +22,21 @@ RSpec.describe Feature, type: :model do
     expect(feature).to_not be_valid
   end
 
-  it "feature should belongs to a project" do
+  it "category_id should be integer" do
     feature.category_id = 1
+    expect(feature.category_id).to be_a(Integer)
+  end
+
+  it "should create ticket_id for the feature" do
+    feature.save
+    expect(feature.ticket_id).to_not be_nil
+  end
+
+  it "feature should have many tasks" do
+    expect(feature.tasks).to_not be_nil
+  end
+
+  it "feature should belongs to a project" do
     feature.project = nil
     expect(feature).to_not be_valid
   end

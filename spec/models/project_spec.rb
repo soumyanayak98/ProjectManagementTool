@@ -24,8 +24,12 @@ RSpec.describe Project, type: :model do
 
   it "should capitalize project_name" do
     project.project_name = "first project"
-    project.save!
+    project.save
     expect(project.project_name).to eq "First project"
+  end
+
+  it "project should have many features" do
+    expect(project.features).to_not be_nil
   end
 
   it "project should belongs to a user" do
