@@ -14,13 +14,15 @@ class Feature < ApplicationRecord
 
   def self.search(search)
     if search
-      if search[0..2] == "FI-" || search[0..2] == "fi-"
-        Feature.where("ticket_id ILIKE ?", "#{search}%")
-      else
-        Feature.where("title ILIKE ?", "#{search}%")
-      end
+      Feature.where("ticket_id ILIKE ? OR title ILIKE ?", "#{search}%", "#{search}%")
     else
       Feature.all
     end
   end
 end
+
+# if search[0..2] == "FI-" || search[0..2] == "fi-"
+#   Feature.where("ticket_id ILIKE ?", "#{search}%")
+# else
+#   Feature.where("title ILIKE ?", "#{search}%")
+# end

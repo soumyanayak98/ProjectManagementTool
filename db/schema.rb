@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_060511) do
+ActiveRecord::Schema.define(version: 2021_10_11_125532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_06_060511) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "task_id"
+    t.bigint "task_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_10_06_060511) do
   end
 
   create_table "features", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "project_id"
+    t.bigint "project_id", null: false
     t.string "ticket_id", null: false
     t.integer "category_id", null: false
     t.string "title", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_10_06_060511) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "project_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -84,19 +84,19 @@ ActiveRecord::Schema.define(version: 2021_10_06_060511) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.uuid "feature_id"
+    t.uuid "feature_id", null: false
     t.text "description"
-    t.boolean "done", default: false
+    t.boolean "done", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "started", default: false
-    t.boolean "delivered", default: false
+    t.boolean "started", default: false, null: false
+    t.boolean "delivered", default: false, null: false
     t.index ["feature_id"], name: "index_tasks_on_feature_id"
   end
 
   create_table "user_tasks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "task_id"
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_user_tasks_on_task_id"

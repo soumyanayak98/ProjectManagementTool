@@ -15,9 +15,8 @@ class User < ApplicationRecord
     (?=.*[A-Z])        # Must contain an upper case character
     (?=.*[[:^alnum:]]) # Must contain a symbol
   /x
-  validates :email, presence: true, length: { maximum:150}, 
-                    format: {with: VALID_EMAIL_REGEX}
-  validates :password, :length => {:within => 8..40}, format: {with: PASSWORD_FORMAT}
+  validates :email, presence: true, length: { maximum:150}, format: {with: VALID_EMAIL_REGEX}
+  validates :password, length: {within: 8..40}, format: {with: PASSWORD_FORMAT}
   validates_confirmation_of :password
 
   def downcase_fields

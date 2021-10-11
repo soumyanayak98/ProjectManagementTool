@@ -21,9 +21,6 @@ class ProjectsController < ApplicationController
     else
       @features = @project.features.all
     end
-    @cat1 = @features.select { |feature| feature.category_id == 1  }
-    @cat2 = @features.select { |feature| feature.category_id == 2  }
-    @cat3 = @features.select { |feature| feature.category_id == 3  }
 
   end
 

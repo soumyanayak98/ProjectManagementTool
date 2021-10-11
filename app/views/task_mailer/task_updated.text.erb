@@ -1,10 +1,10 @@
 Task: "<%= @task.description %>"
 
- Assigned To:
+Assigned To:
   <% @task.users.each  do |user| %>
     <%= user.username %>
   <%end %>
-
+  
 Status:
   <% if @task.delivered %>
     "Delivered"

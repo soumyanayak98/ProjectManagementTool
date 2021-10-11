@@ -24,7 +24,6 @@
   <a id="currOpen">Current Iteration</a>
   <a id="backOpen">BackLogs</a>
   <a id="iceOpen">IceBox</a>
-  <
 </div>
 
 <div class="container">
@@ -32,6 +31,7 @@
     <%= render 'shared/msgs' %>
   </div>
   <div class="row mx-lg-n5 px-2 mt-2 d-flex justify-content-between">
+  
     <div class="section" id="currItr">
       <div class="row justify-content-between align-items-center">
         <div class="col-6">
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="features-list mt-2">
-          <%= render 'features/lists', obj:{ arr: @cat1, fid: '1'} %>
+          <%= render 'features/lists', obj:{ arr: @features.select{ |feature| feature.category_id == 1}, fid: '1'} %>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="features-list mt-2">
-          <%= render 'features/lists', obj: { arr: @cat2, fid: '2'} %>
+          <%= render 'features/lists', obj: { arr: @features.select{ |feature| feature.category_id == 2}, fid: '2'} %>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
           </div>
         </div>
         <div class="features-list mt-2">
-          <%= render 'features/lists', obj: { arr: @cat3, fid: '3'} %>
+          <%= render 'features/lists', obj: { arr: @features.select{ |feature| feature.category_id == 3}, fid: '3'} %>
         </div>
       </div>
     </div>
