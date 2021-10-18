@@ -20,9 +20,3 @@ class Feature < ApplicationRecord
     end
   end
 end
-
-# if search[0..2] == "FI-" || search[0..2] == "fi-"
-#   Feature.where("ticket_id ILIKE ?", "#{search}%")
-# else
-#   Feature.where("title ILIKE ?", "#{search}%")
-# end
