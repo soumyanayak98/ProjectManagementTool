@@ -5,5 +5,5 @@
     </strong>
     <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank", class: "btn btn-primary btn-sm p-1" %>
   </div>
-  <div>Status: <em><%= task_status(task) %></em></div>
+  <div>Status: <em><%= task.status %></em></div>
 </div>

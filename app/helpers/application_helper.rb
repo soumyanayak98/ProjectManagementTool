@@ -9,16 +9,4 @@ module ApplicationHelper
       return unames[0]
     end
   end
-
-  def task_status(task)
-    if task.delivered
-      "Delivered"
-    else
-      if task.done
-        "Finished"
-      else
-        task.started ? "Started" : "Not Started"
-      end
-    end
-  end
 end
