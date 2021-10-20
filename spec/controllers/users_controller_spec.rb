@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:valid_attributes) do
     {
-      usernam: 'soumya',
+      username: 'soumya',
       email: 'soumy@example.com',
       password: 'pAssword@123'
     }
   end
   let(:invalid_attributes) do
     {
-      usernam: 'soumya',
+      username: 'soumya',
       email: 'soumyexample.com',
       password: 'pssword@123'
     }
