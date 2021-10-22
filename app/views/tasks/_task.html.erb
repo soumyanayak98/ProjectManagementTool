@@ -1,9 +1,12 @@
-<div class="card card-body p-1 mb-1">
-  <div class="d-flex flex-row justify-content-between">
-    <strong>
-      <%= truncate(task.description, length: 34) %>
-    </strong>
-    <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank", class: "btn btn-primary btn-sm p-1" %>
+<% tasks.includes(:feature).each do |task| %>
+  <div class="card card-body p-1 mb-1">
+    <div class="d-flex flex-row justify-content-between">
+      <strong>
+        <%= truncate(task.description, length: 34) %>
+      </strong>
+      <%= link_to "view",[task.feature.project, task.feature, task], target: "_blank", class: "btn btn-primary btn-sm p-1" %>
+    </div>
+    <div>Status: <em><%= task.status %></em></div>
   </div>
-  <div>Status: <em><%= task.status %></em></div>
-</div>
+<% end %>
+

@@ -1,10 +1,4 @@
 $(document).on("turbolinks:load", function () {
-	let tasks = Array.from($(".tasks"));
-	tasks.forEach(function (task) {
-		let lastChild = task.lastElementChild;
-		lastChild.style.display = "none";
-	});
-
 	$("#currBtn").on("click", function () {
 		$("#currItr").hide();
 	});

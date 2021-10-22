@@ -18,7 +18,7 @@
       <div>
         <strong class="d-inline">Feature Description: </strong><span><%= @task.feature.description %></span>
       </div>
-      <%= link_to "View attachment", @task.feature.attachment_url, target: "_blank" %>
+      <%= link_to "View attachment", @task.feature.attachment_url, target: "_blank" if @task.feature.attachment_url %>
       <h5>Task: <%= @task.description %></h5>
       <div>
         <strong>Assigned to: </strong>  

@@ -14,7 +14,7 @@
       <span class="lead">
         <%= feature.description %>
       </span>
-      <%= link_to "view attachment", feature.attachment_url, target: "_blank" %>
+      <%= link_to "view attachment", feature.attachment_url, target: "_blank" if feature.attachment_url %>
       <%= form_for([feature.project, feature, feature.tasks.build]) do |f| %>
         <div class="form-group row">
           <div class="col-9 pr-0">
@@ -33,7 +33,7 @@
       </div>
       <hr class="mt-0 mb-1"/>
       <div class="tasks">
-        <%= render feature.tasks %>
+        <%= render 'tasks/task', tasks: feature.tasks %>
       </div>
     </div>
   </div>
