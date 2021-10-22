@@ -1,0 +1,14 @@
+<h4>Create a new project</h4>
+<div>
+  <%= form_for(curr_user.projects.build, html:{ class: "shadow p-2 bg-dark rounded" }) do |f| %>
+      <div class="form-group row m-0">
+        <%= f.label :project_name , class: "col-sm-2 col-form-label text-white" %>
+        <div class="col-sm-8">
+          <%= f.text_field :project_name, class: "form-control", placeholder: "Enter a name for your project", required: true %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.submit :create, class: "btn btn-outline-light"%> 
+        </div> 
+      </div>
+    <% end %>
+</div>

@@ -4,7 +4,7 @@ class Feature < ApplicationRecord
   has_many :tasks, dependent: :destroy
   before_save :create_ticket_id
 
-  validates :title, presence: true
+  validates :title, presence: true, length: {minimum: 5, maximum:50}
   validates :description, presence: true
   validates :category_id, presence: true
   

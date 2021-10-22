@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#omniauth' 
     
   resources :users, only: [:create]
-  resources :projects, except: [:edit, :update, :destroy] do
+  resources :projects, only: [:index, :create, :show]do
     resources :features, only: [:create] do
       resources :tasks, only: [:show, :create, :update] do
         resources :mentions, only: [:index]

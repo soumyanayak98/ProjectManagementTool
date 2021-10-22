@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :require_user
 
   def index
-    @projects = curr_user.projects.paginate(page: params[:page], per_page: 10)
+    @projects = curr_user.projects.paginate(page: params[:page], per_page: 6)
   end
   
   def show
@@ -24,20 +24,13 @@ class ProjectsController < ApplicationController
 
   end
 
-  def new
-    @project = Project.new
-    respond_to do |format|
-      format.js {render partial: 'projects/new'}
-    end
-  end
-
   def create
     @project = curr_user.projects.build(project_params)
     if @project.save
       flash[:success] = "Project created successfully!"
       redirect_to projects_path
     else
-      flash[:error] = "Project must contain a name"
+      flash[:error] = @project.errors.full_messages.to_sentence
       redirect_to projects_path
     end
   end

@@ -1,6 +1,8 @@
 <%= render 'shared/navigation' %>
 <div class="container">
-  <%= render 'shared/msgs' %>
+  <div id="msgs">
+    <%= render 'shared/msgs' %>
+  </div>
   
   <% if curr_user && @projects.length > 0 %>
     <div class="row px-2 pt-1 bg-dark text-white mt-2">
@@ -9,10 +11,17 @@
       </div>
       <div class="col-3 p-2 text-center">
         <h5>Create New
-          <%= link_to new_project_path, remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'  do %>
+          <a data-toggle="collapse" href="#newP" role="button" aria-expanded="false" aria-controls="#newP">
             <i class="fas fa-plus-circle fa-lg"></i>
-          <% end %>
+          </a>
         </h5>
+      </div>
+    </div>
+    <div class="collapse" id="newP">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-9 text-center">
+          <%= render "form" %>
+        </div>
       </div>
     </div>
     <div class="flickr_pagination">
@@ -49,5 +58,3 @@
     <% end %>
   <% end %>
 </div>
-
-<%= render 'projects/modal' %>
