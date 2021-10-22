@@ -9,14 +9,9 @@ class User < ApplicationRecord
   validates :username, presence: true, length: {minimum: 3, maximum: 25}
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  PASSWORD_FORMAT = /\A
-    (?=.*\d)           # Must contain a digit
-    (?=.*[a-z])        # Must contain a lower case character
-    (?=.*[A-Z])        # Must contain an upper case character
-    (?=.*[[:^alnum:]]) # Must contain a symbol
-  /x
+  
   validates :email, presence: true, length: { maximum:150}, format: {with: VALID_EMAIL_REGEX}
-  validates :password, length: {within: 8..40}, format: {with: PASSWORD_FORMAT}
+  validates :password, length: {within: 8..40}
   validates_confirmation_of :password
 
   def downcase_fields
@@ -33,7 +28,7 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.username = auth.info.name
       user.email = auth.info.email
-      user.password = (('0'..'9').to_a + ('a'..'z').to_a + ('A'..'Z').to_a + ("\u0020".."\u00fe").to_a).shuffle.first(25).join
+      user.password = (('0'..'9').to_a + ('a'..'z').to_a + ('A'..'Z').to_a + ("\u0020".."\u0040").to_a + ("\u005b".."\u0060").to_a + ("\u007b".."\u007e").to_a).shuffle.first(25).join
       user.color = User.gen_color
     end
   end
@@ -41,6 +36,33 @@ class User < ApplicationRecord
   def self.gen_color
     col_array = ["red", "yellow", "green", "blue", "cyan"]
     col_array.sample
+  end
+
+  validate :password_lower_case
+  validate :password_uppercase
+  validate :password_special_char
+  validate :password_contains_number
+
+  def password_uppercase
+    return if !!password.match(/\p{Upper}/)
+    errors.add :password, 'must contain at least 1 uppercase '
+  end
+
+  def password_lower_case
+    return if !!password.match(/\p{Lower}/)
+    errors.add :password, 'must contain at least 1 lowercase '
+  end
+
+  def password_special_char
+    special = "?<>',?[]}{=-)(*&^%$#`~{}!@"
+    regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+    return if password =~ regex
+    errors.add :password, 'must contain special character'
+  end
+
+  def password_contains_number
+    return if password.count("0-9") > 0
+    errors.add :password, 'must contain at least one number'
   end
 
 end
