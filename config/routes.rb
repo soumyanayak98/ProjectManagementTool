@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :create, :show]do
     resources :features, only: [:create] do
       resources :tasks, only: [:show, :create, :update] do
+        member do
+          patch :done
+          put :done
+        end
         resources :mentions, only: [:index]
         resources :comments, only: [:create]
       end

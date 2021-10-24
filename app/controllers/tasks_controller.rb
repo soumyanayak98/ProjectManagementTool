@@ -19,19 +19,23 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(params.require(:task).permit(:done, :started, :delivered, user_ids:[]))
-      emails = @task.users.map(&:email)
-      owner_email = @task.feature.project.user.email
       sub = @task.saved_changes.empty? ? "A new user has been assigned to the task" : "Status of the task has Updated"
-      @task.users.each do |user|
-        TaskMailer.task_updated(@task, user.email, sub).deliver_now
-      end
-      TaskMailer.task_updated(@task, owner_email, sub).deliver_now if !emails.include?(owner_email)
+      send_emails(@task, sub)
       flash[:success] = "Task Updated Successfully!"
       redirect_to [@task.feature.project, @task.feature, @task]
     else
       flash[:notice] = "Error Occured!"
       redirect_to [@task.feature.project, @task.feature, @task]
     end
+  end
+
+  def done
+    @task = Task.find(params[:id])
+    @task.update_attribute(:done, true)
+    flash[:success] = "Task Updated Successfully!"
+    sub = "Status of the task has been updated"
+    send_emails(@task, sub)
+    redirect_to @task.feature.project
   end
 
   private
@@ -43,5 +47,13 @@ class TasksController < ApplicationController
       flash[:alert] = "You must be logged in to continue"
       redirect_to login_path
     end
+  end
+  def send_emails(task, sub)
+    emails = task.users.map(&:email)
+    owner_email = task.feature.project.user.email
+    task.users.each do |user|
+      TaskMailer.task_updated(task, user.email, sub).deliver_now
+    end
+    TaskMailer.task_updated(task, owner_email, sub).deliver_now if !emails.include?(owner_email)
   end
 end
