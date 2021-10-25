@@ -40,7 +40,7 @@ class TasksController < ApplicationController
 
   def assign
     @task = Task.find(params[:id])
-    if params[:user_id] != ""
+    if params[:user_id]
       user = User.find(params[:user_id])
       @task.users << user
       flash[:success] = "User successfully assigned to the task"

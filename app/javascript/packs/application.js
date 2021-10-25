@@ -9,13 +9,22 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 
 Rails.start();
-Turbolinks.start();
 ActiveStorage.start();
 
 import "jquery";
 import "popper.js";
 import "bootstrap";
+Turbolinks.start();
+import "select2";
+import "select2/dist/css/select2.css";
+import "bootstrap-select";
+
 require("custom");
+
+$(document).on("turbolinks:load", function () {
+	$(".select2").select2();
+	$(".selectpicker").selectpicker();
+});
 
 require("trix");
 require("@rails/actiontext");

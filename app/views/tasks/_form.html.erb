@@ -3,7 +3,7 @@
     <div class="form-group row mb-0">
         <%= f.label "Assign User" , class: "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
-          <%= f.collection_select(:user_ids, User.all, :id , :username, {prompt: 'make your selection from the list below(optional)'}, { multiple: true, class: 'custom-select '}  ) %>
+          <%= f.collection_select(:user_ids, User.all, :id , :username, {prompt: 'Select(multiple) from the list below'}, { multiple: true, class: 'form-control select2'}  ) %>
         </div>
     </div>
   <% end %>
