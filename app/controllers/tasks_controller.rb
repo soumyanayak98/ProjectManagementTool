@@ -32,10 +32,25 @@ class TasksController < ApplicationController
   def done
     @task = Task.find(params[:id])
     @task.update_attribute(:done, true)
-    flash[:success] = "Task Updated Successfully!"
+    flash[:success] = "Task Successfully finished!"
     sub = "Status of the task has been updated"
     send_emails(@task, sub)
     redirect_to @task.feature.project
+  end
+
+  def assign
+    @task = Task.find(params[:id])
+    if params[:user_id] != ""
+      user = User.find(params[:user_id])
+      @task.users << user
+      flash[:success] = "User successfully assigned to the task"
+      sub = "User has been assigned to the task"
+      send_emails(@task, sub)
+      redirect_to @task.feature.project
+    else
+      flash[:notice] = "Please make a valid selection before assigning!"
+      redirect_to @task.feature.project
+    end
   end
 
   private

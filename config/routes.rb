@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :tasks, only: [:show, :create, :update] do
         member do
           patch :done
-          put :done
+          patch :assign
         end
         resources :mentions, only: [:index]
         resources :comments, only: [:create]
