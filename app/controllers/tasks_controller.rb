@@ -31,11 +31,16 @@ class TasksController < ApplicationController
 
   def done
     @task = Task.find(params[:id])
-    @task.update_attribute(:done, true)
-    flash[:success] = "Task Successfully finished!"
-    sub = "Status of the task has been updated"
-    send_emails(@task, sub)
-    redirect_to @task.feature.project
+    if params[:done] == "1"
+      @task.update_attribute(:done, true)
+      flash[:success] = "Task Successfully finished!"
+      sub = "Status of the task has been updated"
+      send_emails(@task, sub)
+      redirect_to @task.feature.project
+    else
+      flash[:notice] = "Please check the checkbox before saving!"
+      redirect_to @task.feature.project
+    end
   end
 
   def assign
